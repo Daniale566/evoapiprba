@@ -31,6 +31,8 @@ async function bootstrap() {
     providerFiles = new ProviderFiles(configService);
     await providerFiles.onModuleInit();
     logger.info('Provider:Files - ON');
+});
+
   }
 
   const prismaRepository = new PrismaRepository(configService);
@@ -59,6 +61,7 @@ async function bootstrap() {
   app.set('view engine', 'hbs');
   app.set('views', join(ROOT_DIR, 'views'));
   app.use(express.static(join(ROOT_DIR, 'public')));
+
 
   app.use('/store', express.static(join(ROOT_DIR, 'store')));
 
@@ -140,11 +143,15 @@ async function bootstrap() {
     Sentry.setupExpressErrorHandler(app);
   }
 
-  server.listen(httpServer.PORT, () => logger.log(httpServer.TYPE.toUpperCase() + ' - ON: ' + httpServer.PORT));
 
   initWA();
 
   onUnexpectedError();
+
+ const PORT = process.env.PORT || 8080;
+    ServerUP.set(app);
+    ServerUP.http().listen(PORT, () => {
+      console.log(`✅ Server running on port ${PORT}`);
 }
 
 bootstrap();
