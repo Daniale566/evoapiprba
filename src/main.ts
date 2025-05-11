@@ -31,7 +31,7 @@ async function bootstrap() {
     providerFiles = new ProviderFiles(configService);
     await providerFiles.onModuleInit();
     logger.info('Provider:Files - ON');
-});
+};
 
   }
 
