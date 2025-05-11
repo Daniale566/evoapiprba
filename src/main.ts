@@ -31,7 +31,7 @@ async function bootstrap() {
     providerFiles = new ProviderFiles(configService);
     await providerFiles.onModuleInit();
     logger.info('Provider:Files - ON');
-};
+});
 
   }
 
@@ -152,6 +152,6 @@ async function bootstrap() {
     ServerUP.set(app);
     ServerUP.http().listen(PORT, () => {
       console.log(`✅ Server running on port ${PORT}`);
-}
+});
 
 bootstrap();
